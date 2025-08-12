@@ -1,0 +1,22 @@
+Epic:
+We want to create and present multiple visualisations of the main schema hosted in pagila so that we can perform analysis on the data and provide useful insights
+
+User Story 1:
+As a presenter I want to be able to find out how many times different genres were rented by country, so that I am able to display the most popular genres by country in a graph
+	Tasks:
+		Connect to the pagila database
+		Extract all tables but: [language, store, staff, app_id]
+		Store the extracted tables in data/raw/
+		Explore the data for cleaning in transform.ipynb
+		Clean the extracted tables and store in data/cleaned
+		Perform analysis on cleaned data in insights.ipynb
+
+User Story 2:
+As a presenter I want to be able to find out how much money each film has made, so that I am able to display the most popular films
+
+User Story 3:
+As a presenter I want to be able to find out how many times each actor appears in each rental, so that I am able to display the most popular actors
+
+User Story 4:
+As a presenter I want to be able to find out how many films were rented during each month, so that I am able to display what time of the year is most popular to rent films
+
