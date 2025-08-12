@@ -1,15 +1,8 @@
 Epic:
-We want to create and present multiple visualisations of the main schema hosted in pagila so that we can perform analysis on the data and provide useful insights
+I want to create and present multiple visualisations of the main schema hosted in pagila, so that I can perform analysis on the data and provide useful insights
 
 User Story 1:
 As a presenter I want to be able to find out how many times different genres were rented by country, so that I am able to display the most popular genres by country in a graph
-	Tasks:
-		Connect to the pagila database
-		Extract all tables but: [language, store, staff, app_id]
-		Store the extracted tables in data/raw/
-		Explore the data for cleaning in transform.ipynb
-		Clean the extracted tables and store in data/cleaned
-		Perform analysis on cleaned data in insights.ipynb
 
 User Story 2:
 As a presenter I want to be able to find out how much money each film has made, so that I am able to display the most popular films
@@ -20,3 +13,45 @@ As a presenter I want to be able to find out how many times each actor appears i
 User Story 4:
 As a presenter I want to be able to find out how many films were rented during each month, so that I am able to display what time of the year is most popular to rent films
 
+Tasks:
+- Create pyproject.toml
+  - Create pyproject.toml to ensure two scripts can be run
+  - Script 1: run_etl - Run extract and transform concurrently on command
+  - Script 2: run_tests - Run unit tests to improve code robustness
+- Connect to database
+  - Create personal .env file containing details required to connect to the pagila database
+  - Ensure that code is able to retrieve connection details and use them to create authorised connection to postgres database
+- Extract tables from database
+  - actor
+  - address
+  - category
+  - city
+  - country
+  - customer
+  - film
+  - film_actor
+  - film_category
+  - inventory
+  - payment
+  - rental
+- Store raw tables
+  - Store tables in folder data/raw/ for later transforming
+- Explore the data for cleaning in transform.ipynb
+  - Identify null values and determine resolution
+  - Identify duplicate records and determine resolution
+  - Identify variable date formats and determine resolution
+  - Identify erroneous column typing and determine resolution
+- Transform the extracted tables and store in data/cleaned
+  - Implement null values resolution
+  - Implement duplicate records resolution
+  - Implement variable date format resolution
+  - Implement erroneous column typing resolution
+- Perform analysis on cleaned data
+  - Explore cleaned data to identify useful analysis
+- Create visualisations
+  - Genre count by country
+  - Total amount by film
+  - Total actor appearance count by rental
+  - Film rent count by month
+- Prepare presentation
+  - Determine method (PowerPoint or Streamlit)
