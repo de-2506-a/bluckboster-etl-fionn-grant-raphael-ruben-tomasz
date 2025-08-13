@@ -22,7 +22,8 @@ def extract_address() -> pd.DataFrame:
         )
         # Read SQL query
         EXTRACT_ADDRESS_QUERY_FILE = os.path.join(
-            os.path.dirname(__file__), r"C:\Users\ruben\OneDrive\Desktop\digitalfutures\bluckboster-etl-fionn-grant-raphael-ruben-tomasz\sql\extract_address.sql"
+            os.path.dirname(__file__), 
+            '..', '..', 'sql', 'extract_address.sql'
         )
         with open(EXTRACT_ADDRESS_QUERY_FILE, "r") as file:
             query = file.read()
@@ -34,7 +35,7 @@ def extract_address() -> pd.DataFrame:
             )
         #Print successful extraction
         print(f"Extracted address table in {extract_address_execution_time} seconds")
-        address_df.to_csv(r"C:\Users\ruben\OneDrive\Desktop\digitalfutures\bluckboster-etl-fionn-grant-raphael-ruben-tomasz\data\raw/uncleaned_address.csv",index= False)
+        address_df.to_csv(r"data\raw\uncleaned_address.csv",index= False)
         return address_df
     # Print unsuccessful extraction
     except Exception as e:

@@ -22,10 +22,8 @@ def extract_category() -> pd.DataFrame:
         )
         # Read SQL query
         EXTRACT_CATEGORY_QUERY_FILE = os.path.join(
-
             os.path.dirname(__file__),
-            '..', '..', 'sql', 'extract_actor.sql'
-
+            '..', '..', 'sql', 'extract_category.sql'
         )
         with open(EXTRACT_CATEGORY_QUERY_FILE, "r") as file:
             query = file.read()
@@ -37,9 +35,10 @@ def extract_category() -> pd.DataFrame:
             )
         #Print successful extraction
         print(f"Extracted category table in {extract_category_execution_time} seconds")
-        category_df.to_csv(r"C:\Users\ruben\OneDrive\Desktop\digitalfutures\bluckboster-etl-fionn-grant-raphael-ruben-tomasz\data\raw/uncleaned_category.csv",index= False)
+        category_df.to_csv(r"data\raw\uncleaned_category.csv", index= False)
         return category_df
     # Print unsuccessful extraction
     except Exception as e:
         print(f"Failed to extract data: {e}")
         raise Exception(f"Failed to extract data: {e}")
+        
