@@ -34,6 +34,7 @@ def extract_actor() -> pd.DataFrame:
             )
         #Print successful extraction
         print(f"Extracted actor table in {extract_actor_execution_time} seconds")
+        actor_df.to_csv(r"C:\Users\ruben\OneDrive\Desktop\digitalfutures\bluckboster-etl-fionn-grant-raphael-ruben-tomasz\data\raw/uncleaned_actor.csv",index= False)
         return actor_df
     # Print unsuccessful extraction
     except Exception as e:
