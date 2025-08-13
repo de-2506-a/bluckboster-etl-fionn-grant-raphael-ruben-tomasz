@@ -22,7 +22,10 @@ def extract_category() -> pd.DataFrame:
         )
         # Read SQL query
         EXTRACT_CATEGORY_QUERY_FILE = os.path.join(
-            os.path.dirname(__file__), r"C:\Users\ruben\OneDrive\Desktop\digitalfutures\bluckboster-etl-fionn-grant-raphael-ruben-tomasz\sql\extract_category.sql"
+
+            os.path.dirname(__file__),
+            '..', '..', 'sql', 'extract_actor.sql'
+
         )
         with open(EXTRACT_CATEGORY_QUERY_FILE, "r") as file:
             query = file.read()
