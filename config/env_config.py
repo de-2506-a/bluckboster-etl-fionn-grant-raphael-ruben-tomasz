@@ -8,7 +8,7 @@ ENVS = ["dev", "test"]
 def setup_env(args):
     # Load environment variables from a .env file
     if len(args) != 2 or args[1] not in ENVS:
-        raise ValueError("Usage: unknown argument\nAcceptable arguments are: " + ", ".join(ENVS))
+        raise ValueError("Unknown: Acceptable arguments: " + ", ".join(ENVS))
 
     env = args[1]
 
