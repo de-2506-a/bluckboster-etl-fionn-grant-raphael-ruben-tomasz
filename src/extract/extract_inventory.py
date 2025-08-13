@@ -22,6 +22,7 @@ def extract_inventory() -> pd.DataFrame:
         )
         # Read SQL query
         EXTRACT_INVENTORY_QUERY_FILE = os.path.join(
+
             os.path.dirname(__file__),
             '..', '..', 'sql', 'extract_inventory.sql'
         )

@@ -22,8 +22,10 @@ def extract_actor() -> pd.DataFrame:
         )
         # Read SQL query
         EXTRACT_ACTOR_QUERY_FILE = os.path.join(
+          
             os.path.dirname(__file__),
             '..', '..', 'sql', 'extract_actor.sql'
+
         )
         with open(EXTRACT_ACTOR_QUERY_FILE, "r") as file:
             query = file.read()

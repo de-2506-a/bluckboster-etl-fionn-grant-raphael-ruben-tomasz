@@ -22,8 +22,10 @@ def extract_city() -> pd.DataFrame:
         )
         # Read SQL query
         EXTRACT_CITY_QUERY_FILE = os.path.join(
+
             os.path.dirname(__file__),
             '..', '..', 'sql', 'extract_city.sql'
+
         )
         with open(EXTRACT_CITY_QUERY_FILE, "r") as file:
             query = file.read()

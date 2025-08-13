@@ -22,6 +22,7 @@ def extract_film_category() -> pd.DataFrame:
         )
         # Read SQL query
         EXTRACT_FILM_CATEGORY_QUERY_FILE = os.path.join(
+
             os.path.dirname(__file__),
             '..', '..', 'sql', 'extract_film_category.sql'
         )
