@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def transform():
 
     tables = [
@@ -115,3 +116,9 @@ def transform():
     for this_table in tables:
         # write particular data frame to relevant csv file  
         df_dict[this_table].to_csv(f'../../data/clean/{this_table}.csv')
+
+
+if __name__ == "__main__":
+    print('start')
+    #transform()
+    print('end')
