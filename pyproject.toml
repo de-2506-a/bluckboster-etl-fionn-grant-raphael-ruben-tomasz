@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bluckboster-etl-fionn-grant-raphael-ruben-tomasz"
+version = "0.1.0"
+description = "ETL pipeline to explore, clean, and transform BluckBoster Entertainment's data for insights."
+authors = [
+    { name = "Fionn McConville", email = "fionnmcconville555@gmail.com" },
+    { name = "Grant Oglesby", email = "grantgoglesby@gmail.com" },
+    { name = "Raphael Fywell", email = "raphyfywell@gmail.com" },
+    { name = "Ruben Nhez", email = "ruben.nhez@gmail.com" },
+    { name = "Tomasz Waleciuk", email = "infotip@infotip.co.uk" }
+]
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+dynamic = ["dependencies"]
+
+[project.urls]
+Homepage = "https://github.com/de-2506-a/bluckboster-etl-fionn-grant-raphael-ruben-tomasz"
+
+[project.scripts]
+run_etl = "scripts.run_etl:main"
+run_tests = "tests.run_tests:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["*"]
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
