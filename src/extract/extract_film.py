@@ -22,7 +22,8 @@ def extract_film() -> pd.DataFrame:
         )
         # Read SQL query
         EXTRACT_FILM_QUERY_FILE = os.path.join(
-            os.path.dirname(__file__), r"sql\extract_film.sql"
+            os.path.dirname(__file__),
+            '..', '..', 'sql', 'extract_film.sql'
         )
         with open(EXTRACT_FILM_QUERY_FILE, "r") as file:
             query = file.read()

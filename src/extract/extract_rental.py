@@ -22,7 +22,8 @@ def extract_rental() -> pd.DataFrame:
         )
         # Read SQL query
         EXTRACT_RENTAL_QUERY_FILE = os.path.join(
-            os.path.dirname(__file__), r"sql\extract_rental.sql"
+            os.path.dirname(__file__),
+            '..', '..', 'sql', 'extract_rental.sql'
         )
         with open(EXTRACT_RENTAL_QUERY_FILE, "r") as file:
             query = file.read()
