@@ -22,7 +22,7 @@ def extract_actor() -> pd.DataFrame:
         )
         # Read SQL query
         EXTRACT_ACTOR_QUERY_FILE = os.path.join(
-            os.path.dirname(__file__), r"C:\Users\ruben\OneDrive\Desktop\digitalfutures\bluckboster-etl-fionn-grant-raphael-ruben-tomasz\sql\extract_actor.sql"
+            os.path.dirname(__file__), r"sql\extract_actor.sql"
         )
         with open(EXTRACT_ACTOR_QUERY_FILE, "r") as file:
             query = file.read()
@@ -34,7 +34,7 @@ def extract_actor() -> pd.DataFrame:
             )
         #Print successful extraction
         print(f"Extracted actor table in {extract_actor_execution_time} seconds")
-        actor_df.to_csv(r"C:\Users\ruben\OneDrive\Desktop\digitalfutures\bluckboster-etl-fionn-grant-raphael-ruben-tomasz\data\raw/uncleaned_actor.csv",index= False)
+        actor_df.to_csv(r"data\raw\uncleaned_actor.csv",index= False)
         return actor_df
     # Print unsuccessful extraction
     except Exception as e:
