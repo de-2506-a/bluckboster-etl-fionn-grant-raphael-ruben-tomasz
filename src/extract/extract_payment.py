@@ -22,7 +22,8 @@ def extract_payment() -> pd.DataFrame:
         )
         # Read SQL query
         EXTRACT_PAYMENT_QUERY_FILE = os.path.join(
-            os.path.dirname(__file__), r"sql\extract_payment.sql"
+            os.path.dirname(__file__),
+            '..', '..', 'sql', 'extract_payment.sql'
         )
         with open(EXTRACT_PAYMENT_QUERY_FILE, "r") as file:
             query = file.read()
