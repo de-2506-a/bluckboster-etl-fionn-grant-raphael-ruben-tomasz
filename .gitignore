@@ -1,5 +1,6 @@
 # Temporarily Hidden
-
+.env.dev
+.env.test
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
