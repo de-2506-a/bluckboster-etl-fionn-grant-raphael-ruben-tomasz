@@ -22,7 +22,7 @@ def extract_customer() -> pd.DataFrame:
         )
         # Read SQL query
         EXTRACT_CUSTOMER_QUERY_FILE = os.path.join(
-            os.path.dirname(__file__), r"sql\extract_customer.sql"
+            os.path.dirname(__file__), r"C:\Users\ruben\OneDrive\Desktop\digitalfutures\bluckboster-etl-fionn-grant-raphael-ruben-tomasz\sql\extract_customer.sql"
         )
         with open(EXTRACT_CUSTOMER_QUERY_FILE, "r") as file:
             query = file.read()
