@@ -5,7 +5,7 @@ import psycopg2
 from config.db_config import load_db_config
 
 
-def extract_actor() -> pd.DataFrame:
+def extract_city() -> pd.DataFrame:
     
     start_time = timeit.default_timer()
     
@@ -21,21 +21,21 @@ def extract_actor() -> pd.DataFrame:
             port=connection_details["port"]
         )
         # Read SQL query
-        EXTRACT_ACTOR_QUERY_FILE = os.path.join(
-            os.path.dirname(__file__), r"sql\extract_actor.sql"
+        EXTRACT_CITY_QUERY_FILE = os.path.join(
+            os.path.dirname(__file__), r"sql\extract_city.sql"
         )
-        with open(EXTRACT_ACTOR_QUERY_FILE, "r") as file:
+        with open(EXTRACT_CITY_QUERY_FILE, "r") as file:
             query = file.read()
         # Run Query and store into a DataFrame
-        actor_df = pd.read_sql_query(query,connection)
+        city_df = pd.read_sql_query(query,connection)
         connection.close()
-        extract_actor_execution_time = (
+        extract_city_execution_time = (
             timeit.default_timer() - start_time
             )
         #Print successful extraction
-        print(f"Extracted actor table in {extract_actor_execution_time} seconds")
-        actor_df.to_csv(r"data\raw\uncleaned_actor.csv",index= False)
-        return actor_df
+        print(f"Extracted city table in {extract_city_execution_time} seconds")
+        city_df.to_csv(r"data\raw\uncleaned_city.csv", index= False)
+        return city_df
     # Print unsuccessful extraction
     except Exception as e:
         print(f"Failed to extract data: {e}")
