@@ -12,10 +12,6 @@ st.markdown("""
     <hr style="border: 1px solid #ccc; margin: 20px 0;">
     """, unsafe_allow_html=True)
 
-st.subheader('Most popular Category by Country')
-st.subheader('Most popular Films')
-st.subheader('Most popular Actors')
-st.subheader('Most popular Films by Month')
 # # Load data
 path = "../data/raw/"
 df_film = pd.read_csv(path + "uncleaned_film.csv")
@@ -43,7 +39,6 @@ df_country = df_country.drop(columns=['last_update'])
 df_actor = df_actor.drop(columns=['last_update'])
 df_film_actor = df_film_actor.drop(columns=['last_update'])
 
-df_film
 
 # Most popular film category by country
 def get_most_popular_category_by_country():
@@ -87,9 +82,8 @@ def get_most_popular_actors():
                         .merge(df_actor, on='actor_id') \
                         .merge(df_inventory, on='film_id') \
                         .merge(df_rental, on='inventory_id') \
-                        .merge(df_customer, on='customer_id')
 
-    # Group by actor to find the most popular actors
+    # Group by actor to find the most popular actors and display their names
     most_popular = merged_df.groupby('actor_id')['rental_id'].count().reset_index()
     most_popular = most_popular.sort_values(by='rental_id', ascending=False).head(10)
 
@@ -109,7 +103,7 @@ def get_most_popular_films_by_month():
     merged_df['rental_date'] = pd.to_datetime(merged_df['rental_date'])
 
     # Extract month and year from rental date
-    merged_df['month_year'] = merged_df['rental_date'].dt.to_period('M')
+    merged_df['month_year'] = merged_df['rental_date'].dt.strftime('%Y-%m')
 
     # Group by month and film to find the most popular films by month
     most_popular = merged_df.groupby(['month_year', 'title'])['rental_id'].count().reset_index()
@@ -121,7 +115,6 @@ def get_most_popular_films_by_month():
 
 
 # Visualisation 1: Most popular film category by country
-st.subheader("Most Popular Film Category by Country")
 most_popular_category = get_most_popular_category_by_country()
 fig1 = px.bar(most_popular_category, 
                 x='country', 
@@ -133,43 +126,7 @@ fig1 = px.bar(most_popular_category,
 fig1.update_layout(xaxis_title='Country', yaxis_title='Number of Rentals')
 st.plotly_chart(fig1)
 
-# Visualisation 2: Most popular films rented
-st.subheader("Most Popular Films Rented")
-most_popular_films = get_most_popular_films()
-fig2 = px.bar(most_popular_films, 
-                x='title', 
-                y='rental_id', 
-                title='Most Popular Films Rented',
-                labels={'rental_id': 'Number of Rentals', 'title': 'Film Title'})
-
-fig2.update_layout(xaxis_title='Film Title', yaxis_title='Number of Rentals')
-st.plotly_chart(fig2)
-
-# Visualisation 3: Most popular actors by rental count
-st.subheader("Most Popular Actors by Rental Count")
-most_popular_actors = get_most_popular_actors()
-fig3 = px.bar(most_popular_actors, 
-                x='actor_id', 
-                y='rental_id', 
-                title='Most Popular Actors by Rental Count',
-                labels={'rental_id': 'Number of Rentals', 'actor_id': 'Actor ID'})
-fig3.update_layout(xaxis_title='Actor ID', yaxis_title='Number of Rentals')
-st.plotly_chart(fig3)
-
-# Visualisation 4: Most popular films rented by month
-st.subheader("Most Popular Films Rented by Month")  
-most_popular_films_by_month = get_most_popular_films_by_month()
-fig4 = px.bar(most_popular_films_by_month, 
-            x='month_year', 
-            y='rental_id', 
-            color='title', 
-            title='Most Popular Films Rented by Month',
-            labels={'rental_id': 'Number of Rentals', 'title': 'Film Title'})  
-fig4.update_layout(xaxis_title='Month-Year', yaxis_title='Number of Rentals')
-st.plotly_chart(fig4)
-
 # Visualisation 5: chloropleth map of most popular film category in each country
-st.subheader("Most Popular Film Category by Country")
 most_popular_category = get_most_popular_category_by_country()
 fig5 = px.choropleth(most_popular_category, 
                         locations='country', 
@@ -180,3 +137,37 @@ fig5 = px.choropleth(most_popular_category,
 
 fig5.update_layout(xaxis_title='Country', yaxis_title='Film Category')
 st.plotly_chart(fig5)
+
+# Visualisation 2: Most popular films rented
+most_popular_films = get_most_popular_films()
+fig2 = px.bar(most_popular_films, 
+                x='title', 
+                y='rental_id', 
+                title='Most Popular Films Rented',
+                labels={'rental_id': 'Number of Rentals', 'title': 'Film Title'})
+
+fig2.update_layout(xaxis_title='Film Title', yaxis_title='Number of Rentals')
+st.plotly_chart(fig2)
+
+# Visualisation 3: Most popular actors by rental count and display their first name and last name combined
+# st.subheader("Most Popular Actors by Rental Count")
+# most_popular_actors = get_most_popular_actors()
+# most_popular_actors['actor_name'] = most_popular_actors['first_name'] + ' ' + most_popular_actors['last_name']
+# fig3 = px.bar(most_popular_actors, 
+#                 x='actor_name', 
+#                 y='rental_id', 
+#                 title='Most Popular Actors by Rental Count',
+#                 labels={'rental_id': 'Number of Rentals', 'actor_name': 'Actor Name'})
+# fig3.update_layout(xaxis_title='Actor Name', yaxis_title='Number of Rentals')
+# st.plotly_chart(fig3)
+
+# Visualisation 4: Most popular films rented by month
+most_popular_films_by_month = get_most_popular_films_by_month()
+fig4 = px.bar(most_popular_films_by_month, 
+            x='month_year', 
+            y='rental_id', 
+            color='title', 
+            title='Most Popular Films Rented by Month',
+            labels={'rental_id': 'Number of Rentals', 'title': 'Film Title'})  
+fig4.update_layout(xaxis_title='Month-Year', yaxis_title='Number of Rentals')
+st.plotly_chart(fig4)
