@@ -24,7 +24,7 @@ df_dict = dict()
 for this_table in tables:
     # read particular data frame from relevant csv file  
     df_dict[this_table] = \
-        pd.read_csv(f'../../data/raw/unclean_{this_table}.csv')
+        pd.read_csv(f'../../data/raw/uncleaned_{this_table}.csv')
 
 this_table = 'actor'
 # depending on tool used an Unnamed: 0 might appear:
@@ -115,4 +115,4 @@ df_dict[this_table]['rental_date'] = pd.to_datetime(df_dict[this_table]['rental_
 
 for this_table in tables:
     # write particular data frame to relevant csv file  
-    df_dict[this_table].to_csv(f'../../data/clean/clean_{this_table}.csv')
+    df_dict[this_table].to_csv(f'../../data/clean/{this_table}.csv')
