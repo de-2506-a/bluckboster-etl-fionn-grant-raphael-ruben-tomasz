@@ -1,7 +1,8 @@
 import os
 
 
-# Define the structure of the database configuration and retrieve environment variables
+# Define the structure of the database configuration
+# Retrieve environment variables
 def load_db_config():
     config = {
         "source_database": {
@@ -23,6 +24,7 @@ def load_db_config():
     # Validate the database configuration
     validation_db_config(config)
 
+    # Return the validated configuration as dictionary
     return config
 
 
@@ -31,4 +33,6 @@ def validation_db_config(config):
     for db_key, db_config in config.items():
         for key, value in db_config.items():
             if value == "error":
-                raise ValueError(f"Missing environment variable for {db_key} - {key}")
+                raise ValueError(f"Missing variable for {db_key} - {key}")
+            if key == "password" and not value:
+                raise ValueError(f"Empty password for {db_key} - {key}")
